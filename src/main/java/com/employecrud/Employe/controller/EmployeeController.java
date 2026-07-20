@@ -3,8 +3,10 @@ import com.employecrud.Employe.entity.Employee;
 import com.employecrud.Employe.service.EmployeeService;
 
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
 import java.util.List;
+
+
 
 @RestController
 @RequestMapping("/employees")
@@ -33,4 +35,21 @@ public class EmployeeController {
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
+    //for serrch by id 
+    @GetMapping("/{id}")
+    public Employee getEmployeeById(@PathVariable Long id) {
+        return employeeService.getEmployeeById(id);
+    }
+
+    //for update 
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable long id, @RequestBody Employee employee) {
+        return employeeService.updateEmployee(id,employee);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable long id){
+        return employeeService.deleteEmployee(id);
+    }
+
 }
